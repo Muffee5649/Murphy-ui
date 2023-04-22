@@ -2,12 +2,19 @@
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
   "compilerOptions": {
-    "baseUrl": ".",
+    "ignoreDeprecations": "5.0", // silence ts 5.0 -importsNotUsedAsValues warnings
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": ["src/*"]
+    },
+    "target": "ESNext",  // 指定最新版本ES
+    "module": "ESNext",
+    "strict": false, // 编译后文件是否使用严格模式
+    "jsx": "preserve",
+    "moduleResolution": "node", // 选择模块解析策略
+    "lib": ["esnext", "dom"]
   },
-
+  
   "references": [
     {
       "path": "./tsconfig.node.json"

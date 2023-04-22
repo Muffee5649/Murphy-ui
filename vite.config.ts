@@ -7,23 +7,19 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    AutoImport({
-      imports: [
-        'vue',
-        'vue-router',
-        '@vueuse/core',
+    plugins: [
+        vue(),
+        AutoImport({
+            imports: ['vue', 'vue-router', '@vueuse/core'],
+            resolvers: [ElementPlusResolver()]
+        }),
+        Components({
+            resolvers: [ElementPlusResolver()]
+        })
     ],
-      resolvers: [ElementPlusResolver()],
-    }),
-    Components({
-      resolvers: [ElementPlusResolver()],
-    }),
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+    resolve: {
+        alias: {
+            '@': fileURLToPath(new URL('./src', import.meta.url))
+        }
     }
-  }
 })
